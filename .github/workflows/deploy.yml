@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to virtual machine
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.VM_HOST }}
+          host: 20.205.139.33
           username: ${{ secrets.VM_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
