@@ -29,7 +29,6 @@ jobs:
             scp -r ./* ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }}:/node
             ssh ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }} "cd /node && node index.js"
             echo "Deployment and execution completed."
-            echo "Hostname: $HOST"
-            echo "Username: $USERNAME"
+            
 
 
