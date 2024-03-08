@@ -21,12 +21,15 @@ jobs:
       - name: Deploy to virtual machine
         uses: appleboy/ssh-action@master
         with:
-          host: 20.205.139.33
+          host: ${{ secrets.VM_HOST }}
           username: ${{ secrets.VM_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd backend
             scp -r ./* ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }}:/node
             ssh ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }} "cd /node && node index.js"
+            echo "Deployment and execution completed."
+            echo "Hostname: $HOST"
+            echo "Username: $USERNAME"
 
 
