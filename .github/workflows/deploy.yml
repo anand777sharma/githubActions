@@ -18,6 +18,10 @@ jobs:
          cd backend
          npm install
          
+      - name: Add host to known hosts
+        run: |
+         ssh-keyscan -H ${{ secrets.VM_HOST }} >> ~/.ssh/known_hosts
+
       - name: Deploy to virtual machine
         uses: appleboy/ssh-action@master
         with:
@@ -29,6 +33,3 @@ jobs:
             scp -r ./* ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }}:/node
             ssh ${{ secrets.VM_USERNAME }}@${{ secrets.VM_HOST }} "cd /node && node index.js"
             echo "Deployment and execution completed."
-            
-
-
